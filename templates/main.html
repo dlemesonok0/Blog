@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for post in posts %}
+            {% if post.status == 'published' %}
+                <p>{{ post.author.username }}</p>
+                <p>{{ post.title }} - {{ post.date }}</p>
+                <p>{{ post.content }}</p>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endblock %}
