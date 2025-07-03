@@ -1,0 +1,124 @@
+.pagination{
+    text-align: center;
+    color: white;
+}
+.pagination a{
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    display: inline-block;
+}
+.pagination span.active{
+    background-color: hsl(120, 4%, 15%);
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.navbar {
+    width: auto;
+    height: 10vh;
+    display: flex;
+    flex-direction: row;
+    background-color: #1e1e1e;
+    align-items: center;
+    box-shadow:
+            0 8px 12px rgba(0, 0, 0, 0.8),
+            0 -4px 6px rgba(255, 255, 255, 0.1);
+    padding-right: 40px;
+    padding-left: 40px;
+    justify-content: space-between;
+}
+
+body {
+    color: white;
+    background: #252525;
+    margin: 0;
+}
+
+label {
+    color: white;
+}
+
+.tab {
+    color: white;
+    text-decoration: none;
+    margin-right: 20px;
+}
+
+#maintab {
+    font-weight: 1000;
+    font-size: 30px;
+}
+
+.tabs {
+    font-size: 20px;
+    gap: 20px;
+}
+
+.profile {
+    color: white;
+    display: flex;
+    gap: 10px;
+    align-self: center;
+}
+
+button {
+    display: flex;
+    align-items: center;
+    background-color: #252525;
+    border-radius: 7px;
+    box-shadow:
+            4px 4px 6px rgba(0, 0, 0, 0.8),
+            -4px -4px 6px rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    color: white;
+    font-size: 15px;
+    width: fit-content;
+}
+
+.link {
+    text-decoration: none;
+    color: white;
+}
+
+.post {
+    border: 5px solid #1e1e1e;
+    border-radius: 15px;
+    background: #252525;
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    margin-bottom: 20px;
+    color: white;
+    padding: 15px;
+}
+
+.feed {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.post-title {
+    font-size: 22px;
+    font-weight: 1000;
+}
+
+.post-date {
+    font-size: 15px;
+    color: #919191;
+}
+
+.post-content {
+    font-size: 18px;
+}
+
+.post-author {
+    font-size: 15px;
+    color: #919191;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: row;
+}

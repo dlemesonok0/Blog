@@ -5,10 +5,35 @@
 {% block content %}
     <ul>
         {% for post in posts %}
-            <p>{{ post.title }} - {{ post.date }}</p>
-            <p>{{ post.content }}</p>
-            <a href={% url 'edit' post_id=post.id %}>Редактировать</a>
+            <div class="post">
+                <span class="post-title">{{ post.title|slice:50 }}</span>
+                <span class="post-date">{{ post.date }}</span>
+                <span class="post-content">{{ post.content|slice:100 }}</span>
+                <span class="post-author">Автор: {{ post.author.username }}</span>
+                <span class="post-author">{{ post.status }}</span>
+                <div class="button-group">
+                    <button><a class="link" href={% url 'details' post_id=post.id %}>Подробнее</a></button>
+                    <button><a class="link" href={% url 'edit' post_id=post.id %}>Редактировать</a></button>
+                    <button><a class="link" href={% url 'delete' post_id=post.id %}>Удалить</a></button>
+                </div>
+            </div>
         {% endfor %}
     </ul>
-    <a href={% url 'add' %}>Добавить новый</a>
+    <div class="pagination">
+        <span>
+            {% if posts.has_previous %}
+                <a href="?page=1"><<</a>
+                <a href="?page={{ posts.previous_page_number }}"><</a>
+            {% endif %}
+        </span>
+
+        <span class="active">
+            {{ posts.number }} из {{ posts.paginator.num_pages }}
+        </span>
+
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}">></a>
+            <a href="?page={{ posts.paginator.num_pages }}">>></a>
+        {% endif %}
+    </div>
 {% endblock %}

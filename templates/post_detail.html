@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Подробности поста{% endblock %}
+
+{% block content %}
+    <ul>
+        <div class="post feed">
+            {% if post.status == 'published' or post.status == 'draft' and user.id == post.author_id %}
+                <span class="post-title">{{ post.title }}</span>
+                <span class="post-date">{{ post.date }}</span>
+                <span class="post-content">{{ post.content }}</span>
+                <span class="post-author">Автор: {{ post.author.username }}</span>
+            {% endif %}
+        </div>
+    </ul>
+{% endblock %}

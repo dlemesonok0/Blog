@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
@@ -12,16 +13,28 @@ from .models import Post
 def main(request):
     posts = models.Post.objects.filter(status="published")
 
+    paginator = Paginator(posts, 4)
+
+    page = request.GET.get('page')
+
+    page_obj = paginator.get_page(page)
+
     user = request.user
 
-    return render(request, 'main.html', {'posts': posts, 'user': user})
+    return render(request, 'main.html', {'posts': page_obj, 'user': user})
 
 def user_posts(request):
     posts = models.Post.objects.filter(author=request.user)
 
+    paginator = Paginator(posts, 4)
+
+    page = request.GET.get('page')
+
+    page_obj = paginator.get_page(page)
+
     user = request.user
 
-    return render(request, 'user_posts.html', {'posts': posts, 'user': user})
+    return render(request, 'user_posts.html', {'posts': page_obj, 'user': user})
 
 @login_required
 def add_post(request):
@@ -59,6 +72,23 @@ def edit_post(request, post_id):
         form = PostForm(instance=post)
 
     return render(request, 'edit_post.html', {'form': form, 'post': post})
+
+def post_details(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+
+    return render(request, "post_detail.html", {'post': post, 'user': request.user})
+
+def delete_post(request, post_id):
+    user = request.user
+    post = get_object_or_404(Post, pk=post_id)
+
+    if user.id == post.author.id:
+        post.delete()
+        messages.success(request, "Post Deleted")
+    else:
+        messages.error(request, "You are not the author")
+
+    return redirect('user_posts')
 
 
 def register(request):
