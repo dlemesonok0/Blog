@@ -13,7 +13,7 @@ from .models import Post
 def main(request):
     posts = models.Post.objects.filter(status="published")
 
-    paginator = Paginator(posts, 4)
+    paginator = Paginator(posts, 3)
 
     page = request.GET.get('page')
 
@@ -26,7 +26,7 @@ def main(request):
 def user_posts(request):
     posts = models.Post.objects.filter(author=request.user)
 
-    paginator = Paginator(posts, 4)
+    paginator = Paginator(posts, 3)
 
     page = request.GET.get('page')
 
@@ -59,6 +59,9 @@ def edit_post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
 
     if request.user != post.author:
+        return redirect('main')
+
+    if request.method == "POST":
         form = PostForm(request.POST, instance=post)
         if form.is_valid():
             form.save()

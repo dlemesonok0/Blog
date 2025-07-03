@@ -6,9 +6,9 @@
     <ul>
         {% for post in posts %}
             <div class="post">
-                <span class="post-title">{{ post.title|slice:50 }}</span>
+                <span class="post-title">{{ post.title}}</span>
                 <span class="post-date">{{ post.date }}</span>
-                <span class="post-content">{{ post.content|slice:100 }}</span>
+                <span class="post-content">{{ post.content|slice:100 }}...</span>
                 <span class="post-author">Автор: {{ post.author.username }}</span>
                 <span class="post-author">{{ post.status }}</span>
                 <div class="button-group">

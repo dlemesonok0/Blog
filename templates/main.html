@@ -8,9 +8,9 @@
             <div class="feed">
                 {% if post.status == 'published' %}
                     <div class="post">
-                        <span class="post-title">{{ post.title|slice:50 }}</span>
+                        <span class="post-title">{{ post.title}}</span>
                         <span class="post-date">{{ post.date }}</span>
-                        <span class="post-content">{{ post.content|slice:100 }}</span>
+                        <span class="post-content">{{ post.content|slice:100 }}...</span>
                         <span class="post-author">Автор: {{ post.author.username }}</span>
                         <button>
                             <a class="link" href={% url 'details' post_id=post.id %}>Подробнее</a>
